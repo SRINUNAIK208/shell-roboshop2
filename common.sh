@@ -1,5 +1,5 @@
 #!/bin/bash
-start_Data=$(data +%s)
+start_Data=$(date +%s)
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
