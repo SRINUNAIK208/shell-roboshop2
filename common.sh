@@ -63,7 +63,7 @@ app_setup(){
       useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop 
       VALIDATE $? "Created roboshop system user"
     fi
-
+   rm -rf /app
    mkdir -p /app 
    curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip 
    VALIDATE $? "download roboshop artifact"
