@@ -2,7 +2,16 @@
 
 source ./common.sh
 check_rootuser
-Nodejs_setup
+
+dnf module list nginx
+VALIDATE $? "displayed module list of nginx"
+
+dnf module disable nginx -y
+dnf module enable nginx:1.24 -y
+VALIDATE $? "Disabled and enabled nginx"
+
+dnf install nginx -y
+VALIDATE $? "nginx"
 
 
 
