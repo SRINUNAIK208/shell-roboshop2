@@ -16,3 +16,5 @@ VALIDATE $? "protection mode changed"
 systemctl enable redis &>>$Logs_file
 systemctl start redis &>>$Logs_file
 VALIDATE $? "enable and start"
+
+Print_Time

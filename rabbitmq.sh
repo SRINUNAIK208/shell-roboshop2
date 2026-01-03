@@ -1,54 +1,26 @@
 #!/bin/bash
 
-R="\e[31m"
-G="\e[32m"
-Y="\e[33m"
-N="\e[0m"
-
-Logs_Folder="/var/log/shellscript-log"
-Script_Name="$(echo $0 | cut -d "." -f1)"
-Logs_file="$Logs_Folder/$Script_Name.log"
-Script_Dir=$PWD
-
-mkdir -p $Logs_Folder
-
-UserId=$(id -u)
-
-if [ $UserId -eq 0 ]
-then 
-    echo -e "$G user running the script with root access $N"
-else
-    echo -e "$R user not running the script with root access $N"
-    exit 1
-fi
-
-VALIDATE(){
-    
-    if [ $1 -eq 0 ]
-    then
-       echo -e " $2 installation... $G success $N"
-    else
-       echo -e " $2 installation...$R failure $N"
-       exit 1
-    fi
-
-}
+source ./common.sh
+app_name=rabbitmq
+check_rootuser
 
 
 
 
 
 
-cp $Script_Dir/rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo
+cp $Script_Dir/rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo &>>$Logs_file
 VALIDATE $? "rabbitmq repo setup"
 
-dnf install rabbitmq-server -y
+dnf install rabbitmq-server -y &>>$Logs_file
 VALIDATE $? "rabbitmq"
 
-systemctl enable rabbitmq-server
-systemctl start rabbitmq-server
+systemctl enable rabbitmq-server &>>$Logs_file
+systemctl start rabbitmq-server &>>$Logs_file
 VALIDATE $? "start rabbitmq"
 
-rabbitmqctl add_user roboshop roboshop123
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+rabbitmqctl add_user roboshop roboshop123 &>>$Logs_file
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$Logs_file
 VALIDATE $? "username and password setup for rabbitmq"
+
+Print_Time
