@@ -5,6 +5,7 @@ app_name=user
 check_rootuser
 app_setup
 Nodejs_setup
+Systemd_setup
 Print_Time
 
 
