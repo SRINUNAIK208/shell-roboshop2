@@ -1,6 +1,6 @@
 #!/bin/bash
 
-AMI_ID="ami-09c813fb71547fc4f"
+AMI_ID="ami-0220d79f3f480ecf5"
 Security_ID="sg-0c816d02911d3893c"
 Instance=("frontend" "catalogue" "payment" "shipping" "user" "mongodb" "sql" "rabbitmq" "redis" "cart" "dispatch")
 Zone_ID="Z02430753K0CVZ8NBSTXB"
