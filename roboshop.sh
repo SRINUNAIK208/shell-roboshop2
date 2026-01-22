@@ -1,9 +1,9 @@
 #!/bin/bash
 
 AMI_ID="ami-09c813fb71547fc4f"
-Security_ID="sg-00028162e61c10305"
+Security_ID="sg-0c816d02911d3893c"
 Instance=("frontend" "catalogue" "payment" "shipping" "user" "mongodb" "sql" "rabbitmq" "redis" "cart" "dispatch")
-Zone_ID="Z0311053ECKFL0X0CB0M"
+Zone_ID="Z02430753K0CVZ8NBSTXB"
 Domain_Name="srinunayak.online"
 
 for instance in "$@"
